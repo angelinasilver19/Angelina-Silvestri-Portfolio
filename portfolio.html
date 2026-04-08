@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelina Silvestri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background: #FDFAF5;
+            color: #1a1a1a;
+            min-height: 100vh;
+            padding: 64px 48px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+        }
+
+        .name {
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .header-right p {
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .enter-market {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 2px;
+        }
+
+        .enter-market:hover {
+            opacity: 0.5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 32px;
+        }
+
+        .card {
+            display: block;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #f0ece4;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.04);
+        }
+
+        .card-title {
+            margin-top: 14px;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        footer {
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid #e0ddd6;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        footer a {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="name">Angelina<br>Silvestri</h1>
+        <div class="header-right">
+            <p>Designer + Creative Strategist<br>Los Angeles, CA</p>
+            <a href="index.html" class="enter-market">✦ enter the market ✦</a>
+        </div>
+    </header>
+
+    <div class="grid">
+
+        <a class="card" href="projects/fly-by-jing/fly-by-jing.html">
+            <div class="card-img">
+                <img src="assets/FLY-BY-JING-THUMB.png" alt="Fly By Jing">
+            </div>
+            <p class="card-title">Fly By Jing Campaign</p>
+        </a>
+
+        <a class="card" href="projects/market-portfolio/market-portfolio.html">
+            <div class="card-img">
+                <img src="assets/PORTFOLIO-THUMB.png" alt="Portfolio Site">
+            </div>
+            <p class="card-title">Market Portfolio</p>
+        </a>
+
+        <a class="card" href="https://angelinasilver19.github.io/climate-spirograph/" target="_blank">
+            <div class="card-img">
+                <img src="assets/SPIRO-THUMB.png" alt="Climate Spirograph">
+            </div>
+            <p class="card-title">Climate Spirograph</p>
+        </a>
+
+        <a class="card" href="projects/water-potability/water-potability.html">
+            <div class="card-img">
+                <img src="assets/CODING-THUMB.png" alt="Water Potability ML Model">
+            </div>
+            <p class="card-title">Machine Learning Model</p>
+        </a>
+
+    </div>
+
+    <footer>
+        <p>Angelina Silvestri - 2026</p>
+        <a href="index.html">✦ enter the market ✦</a>
+    </footer>
+
+</body>
+</html>

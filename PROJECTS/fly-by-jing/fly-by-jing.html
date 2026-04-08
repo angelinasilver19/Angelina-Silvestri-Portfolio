@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly By Jing — Angelina Silvestri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #EB7042;
+            --purple: #5F3692;
+            --yellow: #F4CE56;
+            --green: #2A6338;
+            --white: #FDFAF5;
+            --black: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: multiply;
+        }
+
+        nav a {
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: var(--orange);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 48px 80px 48px;
+        }
+
+        .hero-tag {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: clamp(52px, 7vw, 96px);
+            font-weight: 700;
+            color: white;
+            line-height: 0.95;
+            margin-bottom: 32px;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 420px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 24px;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-meta {
+            position: absolute;
+            bottom: 48px;
+            right: 48px;
+            text-align: right;
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .hero-meta span {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* SECTION STYLES */
+        section {
+            padding: 120px 48px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 48px;
+            font-weight: 500;
+        }
+
+        /* OVERVIEW */
+        .overview {
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .overview-heading {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--black);
+        }
+
+        .overview-heading em {
+            font-style: italic;
+            font-weight: 300;
+            color: var(--orange);
+        }
+
+        .overview-body p {
+            font-size: 17px;
+            line-height: 1.75;
+            color: #444;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .overview-body p strong {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* WEBSITE STILL */
+        .website-still {
+            background: var(--purple);
+            padding: 80px 48px;
+        }
+
+        .website-still img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .still-caption {
+            margin-top: 24px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+
+        /* COLOR PALETTE */
+        .palette-section {
+            background: var(--black);
+            padding: 80px 48px;
+        }
+
+        .palette-section .section-label {
+            color: white;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .palette-swatch {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .palette-swatch span {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        /* CAMPAIGN GRID */
+        .campaign-section {
+            background: var(--white);
+            padding: 120px 48px;
+        }
+
+        .campaign-intro {
+            max-width: 640px;
+            margin-bottom: 80px;
+        }
+
+        .campaign-intro h2 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .campaign-intro p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #555;
+            font-weight: 300;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+
+        .food-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .food-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .food-item:hover .food-item-overlay {
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* MOCKUPS */
+        .mockups-section {
+    background: var(--yellow);
+    padding: 48px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+        .mockups-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .mockup-item img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .mockup-item.wide {
+            grid-column: span 2;
+        }
+
+        /* PROCESS */
+        .process-section {
+            background: var(--green);
+            padding: 120px 48px;
+        }
+
+        .process-section .section-label {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .process-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .process-header h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            color: white;
+            line-height: 1.1;
+        }
+
+        .process-header h2 em {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .process-header p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.75);
+            font-weight: 300;
+            padding-top: 16px;
+        }
+
+        .process-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .process-img {
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .process-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            padding: 80px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 2px;
+        }
+
+        footer a:hover {
+            border-color: white;
+        }
+
+        /* FADE IN ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="../index.html">✦ back to market ✦ </a>
+        <a href="../portfolio.html">all work</a>
+    </nav>
+
+    <!-- HERO -->
+<div class="hero" style="grid-template-columns: 1fr 2fr;">
+    <div class="hero-left">
+        <p class="hero-tag">Campaign Proposal</p>
+        <h1 class="hero-title" style="font-style: normal; font-weight: 700;">FLY BY<br>JING</h1>
+<hr style="border: none; border-top: 1px solid rgba(255,255,255,0.3); margin: 24px 0;">
+        <p class="hero-tagline" style="border: none; padding: 0; margin-bottom: 24px;">If the brand claims it can go on everything, this campaign finds out where "everything" ends.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 13px; letter-spacing: 0.1em; margin-bottom: 8px;">Objective: Brand Awareness</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 13px; letter-spacing: 0.1em; ">Medium: Social and OOH Print</p>
+    </div>
+    <div class="hero-right">
+        <img src="WILD-POSTING.1.png" alt="Fly By Jing Wild Posting">
+    </div>
+</div>
+
+    <!-- OVERVIEW -->
+    <section class="overview fade-in" style="display: block; padding: 48px 48px;">
+        <p class="section-label">Overview</p>
+        <h2 class="overview-heading" >Brand <em>Identity</em> Study</h2>
+        <div style="display: flex; gap: 64px;">
+            <div style="flex: 0 0 40%; display: flex; flex-direction: column; justify-content: flex-end;">
+                <div class="overview-body">
+                    <p>The line <strong>"You will find yourself putting this on everything"</strong> is doing more than describing the product; it predicts a behavior.</p>
+                    <p>This campaign proposal takes that prediction seriously. If Fly By Jing claims it goes on everything, then the campaign's job is to find out where "everything" ends.</p>
+                    <p>Each food subject is rendered as a hyperrealist oil painting. Every object is given the full fine-art treatment regardless of how absurd the subject matter. The background is a single flat field drawn from the brand's existing color palette. The jagged circle is lifted directly from Fly By Jing's packaging.</p>
+                </div>
+            </div>
+            <img src="WEBSITE-STILL.png" alt="Fly By Jing Website" style="width: 55%; border-radius: 8px; flex-shrink: 0; align-self: flex-start; margin-left: auto;">
+        </div>
+    </section>
+
+    <!-- COLOR PALETTE -->
+    <div class="palette-section fade-in">
+        <p class="section-label" style="color: rgba(255,255,255,0.4);">Brand Color Palette</p>
+        <div class="palette-grid">
+            <div class="palette-swatch" style="background: #EB7042;">
+                <span style="color: white;">#EB7042</span>
+            </div>
+            <div class="palette-swatch" style="background: #5F3692;">
+                <span style="color: white;">#5F3692</span>
+            </div>
+            <div class="palette-swatch" style="background: #F4CE56;">
+                <span style="color: #1a1a1a;">#F4CE56</span>
+            </div>
+            <div class="palette-swatch" style="background: #2A6338;">
+                <span style="color: white;">#2A6338</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOCKUPS -->
+<!-- MOCKUPS -->
+<section style="background: var(--yellow); padding: 24px 48px; height: 100vh; box-sizing: border-box; display: flex; flex-direction: column;">
+    <p class="section-label">OOH + Social Mockups</p>
+    <div style="flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+        <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: calc(100vh - 140px);">
+            <img class="slide" src="WILD-POSTING.1.png" style="max-height: 100%; max-width: 80%; object-fit: contain; display: block;">
+            <img class="slide" src="Billboard.png" style="max-height: 100%; max-width: 80%; object-fit: contain; display: none;">
+            <img class="slide" src="billboard.2.jpg" style="max-height: 100%; max-width: 80%; object-fit: contain; display: none;">
+            <img class="slide" src="WILD.POSTING.2.png" style="max-height: 100%; max-width: 80%; object-fit: contain; display: none;">
+            <img class="slide" src="FlybyJing-Profile.png" style="max-height: 100%; max-width: 80%; object-fit: contain; display: none;">
+            <button onclick="changeSlide(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer;">←</button>
+            <button onclick="changeSlide(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer;">→</button>
+        </div>
+        <span id="slide-counter" style="font-size: 13px; letter-spacing: 0.1em;">1 / 5</span>
+    </div>
+</section>
+
+<script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    function changeSlide(dir) {
+        slides[current].style.display = 'none';
+        current = (current + dir + slides.length) % slides.length;
+        slides[current].style.display = 'block';
+        document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + slides.length;
+    }
+</script>
+
+    <!-- CAMPAIGN ASSETS -->
+    <section class="campaign-section fade-in">
+        <div class="campaign-intro">
+            <p class="section-label">Campaign Assets</p>
+            <h2>You'll put it on <br> <em style="font-style:italic; color: var(--orange);">EVERYTHING.</em></h2>
+        </div>
+        <div class="food-grid">
+            <div class="food-item">
+                <img src="CAKE.png" alt="Cake">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="TOOTHBRUSH.png" alt="Toothbrush">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="Corn.png" alt="Corn">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="Egg.png" alt="Egg">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="FRIES.png" alt="French Fries">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="Ice.png" alt="Ice Cube">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="Pancake.png" alt="Pancakes">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="PB&J.png" alt="PB&J">
+                <div class="food-item-overlay"></div>
+            </div>
+            <div class="food-item">
+                <img src="Salmon.png" alt="Salmon">
+                <div class="food-item-overlay"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PROCESS -->
+    <section class="process-section fade-in">
+        <div class="process-header">
+            <div>
+                <p class="section-label">Process</p>
+                <h2>How it<br><em>was made</em></h2>
+            </div>
+            <div>
+                <p>This project started personally. I've been a Fly By Jing consumer for years. I spent time on their website and researching past Day Job campaigns to understand the brand's visual identity.</p>
+                <p style="margin-top: 16px;">The workflow moved in loops. I hand-sketched food subjects in Procreate to establish form and composition, then brought those sketches into Flora.ai to generate the hyperrealist oil painting treatment and add the chili oil drizzle. Raw files came back into Procreate for color correction. I deliberately desaturated the food so the chili oil reads as the most important element in the hierarchy. Then I went into Figma to build the graphic system: typography, color blocking, shapes.</p>
+                <p style="margin-top: 16px;">Once the Figma mockups were complete, I fed them back into Flora.ai to generate the OOH deliverables, billboards, wild postings, social grids, as client-ready renders. The final assets are AI-assisted, but every creative decision was made by hand first.</p>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;">
+            <div>
+                <img src="PROCESS/FLORA.png" style="width: 100%; border-radius: 8px;">
+                <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 12px; letter-spacing: 0.05em;">Flora.ai — image generation workspace</p>
+            </div>
+            <div>
+                <img src="PROCESS/FIGMA.png" style="width: 100%; border-radius: 8px;">
+                <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 12px; letter-spacing: 0.05em;">Figma — layout and mockup design</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Angelina Silvestri — 2026</p>
+        <a href="../index.html">✦ back to market ✦</a>
+    </footer>
+
+    <script>
+        // FADE IN ON SCROLL
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeEls.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

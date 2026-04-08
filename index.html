@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelina's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #market {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+            cursor: grab;
+            position: relative;
+        }
+
+        #market:active {
+            cursor: grabbing;
+        }
+
+        #world {
+            position: relative;
+            height: 100vh;
+            width: fit-content;
+            display: inline-block;
+        }
+
+        #background {
+            height: 100vh;
+            width: auto;
+            display: block;
+        }
+
+        /* EXIT BUTTON */
+        #exit-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 100;
+            background: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            font-family: 'Urbanist', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        #exit-btn:hover {
+            background: black;
+            color: white;
+        }
+
+        /* MUTE BUTTON */
+        #mute-btn {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 100;
+            background: white;
+            border: 2px solid black;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        #mute-btn:hover {
+            background: black;
+            color: white;
+        }
+        
+        /* ORBS */
+.orb {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 50;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.4s ease;
+    overflow: hidden;
+    background: radial-gradient(circle at 35% 35%,
+    rgba(255, 220, 225, 0.98),
+    rgba(236, 180, 185, 0.8) 35%,
+    rgba(220, 155, 165, 0.5) 65%,
+    rgba(200, 130, 140, 0.2) 85%,
+    transparent);
+}
+
+.orb.visible {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    animation: orb-idle 3s ease-in-out infinite;
+}
+
+.orb:hover {
+    animation: orb-hover 2s ease-in-out infinite;
+    transform: translate(-50%, -50%) scale(1.6) !important;
+    overflow: hidden;
+}
+
+.orb::before {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    border-radius: 43%;
+    background: radial-gradient(ellipse at 55% 45%,
+        rgba(255, 253, 248, 0.7) 0%,
+        rgba(245, 238, 225, 0.35) 40%,
+        transparent 70%);
+    animation: liquid-spin-1 5s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.orb::after {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    border-radius: 47%;
+    background: radial-gradient(ellipse at 40% 60%,
+        rgba(250, 245, 235, 0.6) 0%,
+        rgba(238, 228, 212, 0.3) 45%,
+        transparent 75%);
+    animation: liquid-spin-2 7s linear infinite reverse;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.orb:hover::before,
+.orb:hover::after {
+    opacity: 1;
+}
+
+@keyframes liquid-spin-1 {
+    0%   { transform: rotate(0deg) scale(1); }
+    33%  { transform: rotate(120deg) scale(1.08); }
+    66%  { transform: rotate(240deg) scale(0.95); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes liquid-spin-2 {
+    0%   { transform: rotate(0deg) scale(1.05); }
+    33%  { transform: rotate(-120deg) scale(0.92); }
+    66%  { transform: rotate(-240deg) scale(1.1); }
+    100% { transform: rotate(-360deg) scale(1.05); }
+}
+
+@keyframes orb-idle {
+    0%, 100% {
+        box-shadow:
+            0 0 6px 2px rgba(236, 180, 185, 0.6),
+            0 0 14px 4px rgba(220, 155, 165, 0.35),
+            inset 0 0 6px rgba(255, 220, 225, 0.7);
+    }
+    50% {
+        box-shadow:
+            0 0 10px 4px rgba(236, 180, 185, 0.8),
+            0 0 22px 7px rgba(220, 155, 165, 0.5),
+            inset 0 0 10px rgba(255, 220, 225, 0.9);
+    }
+}
+
+@keyframes orb-hover {
+    0%, 100% {
+        box-shadow:
+            0 0 10px 4px rgba(236, 180, 185, 0.7),
+            0 0 25px 8px rgba(220, 155, 165, 0.4),
+            0 0 45px 14px rgba(200, 130, 140, 0.2),
+            inset 0 0 10px rgba(255, 220, 225, 0.8);
+    }
+    50% {
+        box-shadow:
+            0 0 16px 6px rgba(236, 180, 185, 0.9),
+            0 0 35px 12px rgba(220, 155, 165, 0.55),
+            0 0 60px 20px rgba(200, 130, 140, 0.3),
+            inset 0 0 16px rgba(255, 220, 225, 1);
+    }
+}
+       
+        /* OVERLAYS */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ECB4B9;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            z-index: 200;
+            max-width: 600px;
+            width: 90%;
+            line-height: 1.25;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .overlay-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* OVERLAY BACKDROP */
+        #backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.4);
+            z-index: 150;
+        }
+
+        #backdrop.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EXIT BUTTON -->
+    <button id="exit-btn" onclick="window.location.href='portfolio.html'">
+        ✦ exit world ✦
+    </button>
+
+    <!-- MUTE BUTTON -->
+    <button id="mute-btn" onclick="toggleMute()">♪</button>
+
+    <!-- OVERLAY BACKDROP -->
+    <div id="backdrop" onclick="closeAll()"></div>
+
+    <!-- WELCOME OVERLAY -->
+    <div class="overlay" id="overlay-welcome">
+        <button class="overlay-close" onclick="closeAll()">✕</button>
+        <div style="display: flex; gap: 24px; align-items: flex-start;">
+            <div style="flex: 1;max-width: 50%;">
+                <h1>Hi everyone!</h1>
+                <br>
+                <h3>I am Angelina Silvestri, a Los Angeles based designer and creative strategist who thinks like an environmentalist.</h3>
+            </div>
+            <img src="assets/INTRO_ME.jpg" style="width: 40%; border-radius: 12px; object-fit: cover; flex-shrink: 0;">
+        </div>
+        <br>
+        <p>In my garden, I have learned that healthy plants need to be understood in the context of their entire ecosystem. Brands are not too different. My work is patient, holistic, and always a little messy.</p>
+        <br>
+        <p>My design career started with a BS in Architecture, which gave me a foundation in spatial thinking. I went on to work as a design strategist, working with large organizations on how they could enact real social change. Right now, I'm finishing my master's at USC, taking classes in business, design, and computer science. My current academic course load is about refining my creative process to be as multidisciplinary as the problems I want to solve.</p>
+        <br>
+        <p>If you're working on something you believe in, I'd love to hear from you. I'm always happy to share ideas, trade stories, or just chat about the process of building things that matter.</p>
+    </div>
+
+    <!-- LIBRARY OVERLAY -->
+    <div class="overlay" id="overlay-library">
+        <button class="overlay-close" onclick="closeAll()">✕</button>
+        <h2>What I'm Reading</h2>
+    </div>
+
+    <!-- BIKE OVERLAY -->
+    <div class="overlay" id="overlay-bike">
+        <button class="overlay-close" onclick="closeAll()">✕</button>
+        <h2>That's me!</h2>
+    </div>
+
+    <!-- MAILBOX OVERLAY -->
+<div class="overlay" id="overlay-mail">
+    <button class="overlay-close" onclick="closeAll()">✕</button>
+    <h2>Together, let's build something home grown.</h2>
+    <br>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+        <a href="mailto:angelinas.5119@gmail.com" style="color: white; text-decoration: none; font-size: 16px;text-decoration: underline;">
+            Email
+        </a>
+        <a href="mailto:as42817@usc.edu" style="color: white; text-decoration: none; font-size: 16px; text-decoration: underline;">
+            School Email
+        </a>
+        <a href="https://www.linkedin.com/in/angelina-silvestri" target="_blank" style="color: white; text-decoration: none; font-size: 16px; text-decoration: underline;">
+            LinkedIn
+        </a>
+        <a href="https://www.instagram.com/angelina.silver/" target="_blank" style="color: white; text-decoration: none; font-size: 16px; text-decoration: underline;">
+            Instagram
+        </a>
+    </div>
+</div>
+
+    <!-- THE SCROLLABLE MARKET -->
+    <div id="market">
+        <div id="world">
+
+            <!-- BACKGROUND -->
+            <img id="background" src="assets/BACKGROUND2.PNG" alt="Farmer's Market">
+
+            <!-- ORBS — positions are % of illustration width x height -->
+            <!-- We'll dial these in together once you see them in the browser -->
+            <div class="orb" data-target="overlay-welcome"  style="left: 5.65%;  top: 40%;"></div>
+            <div class="orb" data-target="overlay-library"  style="left: 31.75%; top: 59%;"></div>
+            <div class="orb" data-target="overlay-bike"     style="left: 44.5%; top: 65%;"></div>
+            <div class="orb" data-target="overlay-mail"     style="left: 90%; top: 63%;"></div>
+            <div class="orb" data-target="external" data-url="https://angelinasilver19.github.io/climate-spirograph/" style="left: 3.4%; top: 10.5%;"></div>
+
+        </div>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="bg-music" loop>
+        <source src="music/SUN-KING.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const market = document.getElementById('market');
+        const music = document.getElementById('bg-music');
+        const orbs = document.querySelectorAll('.orb');
+
+        // START MUSIC ON FIRST HOVER
+        document.addEventListener('click', function startMusic() {
+    music.play();
+    document.removeEventListener('click', startMusic);
+}, { once: true });
+
+document.querySelectorAll('.orb').forEach(orb => {
+    orb.addEventListener('mouseenter', function startMusicOnHover() {
+        music.play();
+        document.querySelectorAll('.orb').forEach(o => 
+            o.removeEventListener('mouseenter', startMusicOnHover));
+    }, { once: true });
+});
+
+        // HORIZONTAL SCROLL
+        market.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            market.scrollLeft -= e.deltaY + e.deltaX;
+        }, { passive: false });
+
+        // ORB VISIBILITY — bloom when in viewport, fade when out
+        function checkOrbs() {
+            const viewLeft = market.scrollLeft;
+            const viewRight = viewLeft + market.clientWidth;
+            const worldWidth = document.getElementById('world').offsetWidth;
+            const worldHeight = document.getElementById('world').offsetHeight;
+
+            orbs.forEach(orb => {
+                const leftPercent = parseFloat(orb.style.left) / 100;
+                const orbX = leftPercent * worldWidth;
+
+                const margin = 200;
+                if (orbX > viewLeft - margin && orbX < viewRight + margin) {
+                    orb.classList.add('visible');
+                } else {
+                    orb.classList.remove('visible');
+                }
+            });
+        }
+
+        // CHECK ON SCROLL
+        market.addEventListener('scroll', checkOrbs);
+
+        // CHECK ON LOAD
+        window.addEventListener('load', checkOrbs);
+
+        // ORB CLICK — open overlay
+        orbs.forEach(orb => {
+    orb.addEventListener('click', function() {
+        if (this.dataset.target === 'external') {
+            window.open(this.dataset.url, '_blank');
+        } else {
+            openOverlay(this.dataset.target);
+        }
+    });
+});
+
+        function openOverlay(id) {
+            document.getElementById(id).classList.add('active');
+            document.getElementById('backdrop').classList.add('active');
+        }
+
+        function closeAll() {
+            document.querySelectorAll('.overlay').forEach(o => o.classList.remove('active'));
+            document.getElementById('backdrop').classList.remove('active');
+        }
+
+        function toggleMute() {
+            music.muted = !music.muted;
+            document.getElementById('mute-btn').textContent = music.muted ? '♪̶' : '♪';
+        }
+    </script>
+
+</body>
+</html>

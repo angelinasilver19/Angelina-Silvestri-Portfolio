@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Potability — Angelina Silvestri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #1a1a1a;
+            --white: #FDFAF5;
+            --grey: #f0ece4;
+            --mid: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        nav a {
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover { opacity: 0.5; }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            padding-top: 61px;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 48px;
+            border-right: 1px solid #e8e4dc;
+        }
+
+        .hero-tag {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: clamp(42px, 5vw, 80px);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: 17px;
+            color: #555;
+            font-weight: 300;
+            line-height: 1.7;
+            border-top: 1px solid #e8e4dc;
+            padding-top: 24px;
+        }
+
+        .hero-right {
+    overflow: hidden;
+    background: #1a1a1a;
+    max-height: 100vh;
+}
+
+.hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+}
+
+        .hero-meta {
+            padding: 80px 48px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .meta-item label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .meta-item p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 48px;
+        }
+
+        /* WHY */
+        .why {
+            padding: 120px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: end;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .why h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .why h2 em {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .why-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .why-body p strong {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 120px 48px;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .step {
+            padding-top: 24px;
+            border-top: 1px solid #e8e4dc;
+        }
+
+        .step-number {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 16px;
+        }
+
+        .step h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+            font-weight: 300;
+        }
+
+        /* RESULTS */
+        .results {
+            padding: 120px 48px;
+            background: var(--grey);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 64px;
+        }
+
+        .results-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .results-body p strong {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+
+        .stat {
+            background: var(--white);
+            padding: 32px 24px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--mid);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* PHILOSOPHY */
+        .philosophy {
+            padding: 120px 48px;
+            border-top: 1px solid #e8e4dc;
+        }
+
+        .philosophy blockquote {
+            font-size: clamp(24px, 3vw, 38px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-bottom: 32px;
+        }
+
+        .philosophy p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #555;
+            font-weight: 300;
+            max-width: 640px;
+            margin-bottom: 20px;
+        }
+
+        /* TOOLS */
+        .tools {
+            padding: 80px 48px;
+            border-top: 1px solid #e8e4dc;
+            border-bottom: 1px solid #e8e4dc;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+        }
+
+        .tool-item label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tool-item p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        footer {
+            padding: 64px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--mid);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        footer a {
+            font-size: 13px;
+            color: var(--black);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+        }
+
+        footer a:hover { opacity: 0.5; }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../../portfolio.html">← all work</a>
+        <a href="../../index.html">enter the market</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-left">
+            <p class="hero-tag">USC — Machine Learning Final</p>
+            <h1 class="hero-title">Water<br>Potability</h1>
+            <p class="hero-tagline">Can AI predict whether water is safe to drink? I wrote the code to find out.</p>
+        </div>
+        <div class="hero-right">
+            <img src="../../assets/CODING-THUMB.png" alt="Water Potability Model">
+        </div>
+    </div>
+
+    <!-- META -->
+    <div class="hero-meta fade-in">
+        <div class="meta-item">
+            <label>Course</label>
+            <p>Machine Learning — USC</p>
+        </div>
+        <div class="meta-item">
+            <label>Language</label>
+            <p>Python</p>
+        </div>
+        <div class="meta-item">
+            <label>Libraries</label>
+            <p>scikit-learn, pandas, matplotlib</p>
+        </div>
+        <div class="meta-item">
+            <label>Best Model</label>
+            <p>Support Vector Machine</p>
+        </div>
+    </div>
+
+    <!-- WHY -->
+    <div class="why fade-in">
+        <div>
+            <p class="section-label">The Project</p>
+            <h2>A civic<br><em>question</em></h2>
+        </div>
+        <div class="why-body">
+            <p>My first semester at USC, I enrolled in a machine learning course with a simple conviction: <strong>it can't be that hard, right?</strong> Everyone is coding. Everyone is building things. I wanted to be one of them.</p>
+            <p>For my final project, I chose a dataset of water samples to see if the sample was safe to drink or not. The question felt urgent. Water potability isn't an abstract problem. It's a public health crisis that effects you differently depending on where you live, how much money you have, and who your government is accountable to. A model that could flag unsafe water quickly and cheaply felt like something worth building.</p>
+            <p>I wrote every line of code myself. No AI assistance, no shortcuts. It was one of the hardest things I've ever done.</p>
+        </div>
+    </div>
+
+    <!-- PDF EMBED -->
+<div style="padding: 0 48px 120px 48px; border-bottom: 1px solid #e8e4dc;">
+    <iframe src="../../assets/ML_final.pdf" style="width: 100%; height: 80vh; border: none; border-radius: 8px;"></iframe>
+</div>
+
+    <footer>
+        <p>Angelina Silvestri — 2026</p>
+        <a href="../../portfolio.html">← all work</a>
+    </footer>
+
+    <script>
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        fadeEls.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

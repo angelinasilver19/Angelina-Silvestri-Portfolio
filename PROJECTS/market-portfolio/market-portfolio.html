@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Portfolio — Angelina Silvestri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #1a1a1a;
+            --white: #FDFAF5;
+            --grey: #f0ece4;
+            --mid: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        nav a {
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            padding-top: 61px;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 48px;
+            background: var(--white);
+            border-right: 1px solid #e8e4dc;
+        }
+
+        .hero-tag {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: clamp(42px, 5vw, 80px);
+            font-weight: 700;
+            color: var(--black);
+            line-height: 0.95;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-tagline {
+            font-size: 17px;
+            color: #555;
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 380px;
+            border-top: 1px solid #e8e4dc;
+            padding-top: 24px;
+        }
+
+        .hero-right {
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-meta {
+            padding: 80px 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            border-top: 1px solid #e8e4dc;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .meta-item label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .meta-item p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 120px 48px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 48px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .process-heading {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        .process-heading em {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .process-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .process-body p strong {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* IMAGE FULL */
+        .full-image {
+            width: 100%;
+            display: block;
+        }
+
+        .full-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .image-caption {
+            padding: 16px 48px;
+            font-size: 13px;
+            color: var(--mid);
+            font-style: italic;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        /* PHILOSOPHY */
+        .philosophy {
+            padding: 120px 48px;
+            background: var(--grey);
+        }
+
+        .philosophy-inner {
+            max-width: 800px;
+        }
+
+        .philosophy blockquote {
+            font-size: clamp(24px, 3vw, 38px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--black);
+            margin-bottom: 32px;
+        }
+
+        .philosophy p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #555;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        /* TOOLS */
+        .tools {
+            padding: 80px 48px;
+            border-top: 1px solid #e8e4dc;
+            border-bottom: 1px solid #e8e4dc;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+        }
+
+        .tool-item label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tool-item p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 64px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e8e4dc;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--mid);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        footer a {
+            font-size: 13px;
+            color: var(--black);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+        }
+
+        footer a:hover {
+            opacity: 0.5;
+        }
+
+        /* FADE IN */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../../portfolio.html">← all work</a>
+        <a href="../../index.html">enter the market</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-left">
+            <p class="hero-tag">Portfolio</p>
+            <h1 class="hero-title">The<br>Market<br>Portfolio</h1>
+            <p class="hero-tagline">A website built like a world. The first of many.</p>
+        </div>
+        <div class="hero-right">
+            <img src="../../assets/PORTFOLIO-THUMB.png" alt="Market Portfolio">
+        </div>
+    </div>
+
+    <!-- META -->
+    <div class="hero-meta fade-in">
+        <div class="meta-item">
+            <label>Medium</label>
+            <p>HTML, CSS, JavaScript</p>
+        </div>
+        <div class="meta-item">
+            <label>Illustration</label>
+            <p>Procreate</p>
+        </div>
+        <div class="tool-item">
+            <label>Hosting</label>
+            <p>GitHub Pages</p>
+        </div>
+    </div>
+
+    <!-- FULL ILLUSTRATION -->
+    <div class="full-image fade-in">
+        <img src="../../assets/BACKGROUND2.PNG" alt="The Market Illustration">
+    </div>
+    <p class="image-caption">The full market illustration. Hand drawn in Procreate</p>
+
+    <!-- PROCESS -->
+    <section class="process fade-in">
+        <p class="section-label">Process</p>
+        <div class="process-grid">
+            <div>
+                <h2 class="process-heading">How it<br><em>was made</em></h2>
+            </div>
+            <div class="process-body">
+                <p>This portfolio started with a single question: <strong>what would a website feel like if it was designed like an environment?</strong></p>
+                <p>When I thought about what kind of world to build, the farmer's market felt like an obvious choice. It's a place I return to as often as I can. It's communal, abundant, and alive. I care deeply about our ecology and the natural world; it shapes every decision I make as a designer, a consumer, and a person. </p>
+                <p>The market stalls are a nod to my achitecture background: structure as a way of organizing ideas, not just housing them. In school, drawing and sketching were my favorite parts of the design process.</p>
+                <p>The illustration was drawn entirely by hand in Procreate. No AI, no generated assets. The interactivity was coded in HTML, CSS, and JavaScript with AI assistance.</p>
+                <p>This is the first website I've built that feels like a world. It won't be the last.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy fade-in">
+        <div class="philosophy-inner">
+            <p class="section-label">On web environments</p>
+            <blockquote>A website is an environment. You're asking the user to step outside the noise of the internet and into the world you've created.</blockquote>
+            <p>Most portfolio sites are filing cabinets. Organized, legible, forgettable. This one is an attempt at something different; a space that reflects personality before it reflects credentials.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Angelina Silvestri — 2026</p>
+        <a href="../../portfolio.html">← all work</a>
+    </footer>
+
+    <script>
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeEls.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
