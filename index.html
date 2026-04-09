@@ -90,69 +90,44 @@
         }
         
         /* ORBS */
-.orb {
+        .orb {
     position: absolute;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     z-index: 50;
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
                 opacity 0.4s ease;
-    overflow: hidden;
-    background: radial-gradient(circle at 35% 35%,
-    rgba(255, 220, 225, 0.98),
-    rgba(236, 180, 185, 0.8) 35%,
-    rgba(220, 155, 165, 0.5) 65%,
-    rgba(200, 130, 140, 0.2) 85%,
-    transparent);
+}
+
+.orb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    opacity: 0.9;
 }
 
 .orb.visible {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    animation: orb-idle 3s ease-in-out infinite;
+    animation: spin 8s linear infinite, glow 2.5s ease-in-out infinite;
 }
 
-.orb:hover {
-    animation: orb-hover 2s ease-in-out infinite;
-    transform: translate(-50%, -50%) scale(1.6) !important;
-    overflow: hidden;
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 220, 225, 0.6)); }
+    50% { filter: drop-shadow(0 0 12px rgba(255, 220, 225, 1)); }
 }
 
-.orb::before {
-    content: '';
-    position: absolute;
-    inset: -30%;
-    border-radius: 43%;
-    background: radial-gradient(ellipse at 55% 45%,
-        rgba(255, 253, 248, 0.7) 0%,
-        rgba(245, 238, 225, 0.35) 40%,
-        transparent 70%);
-    animation: liquid-spin-1 5s linear infinite;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+.orb:hover img {
+    animation: spin 2s linear infinite;
 }
 
-.orb::after {
-    content: '';
-    position: absolute;
-    inset: -40%;
-    border-radius: 47%;
-    background: radial-gradient(ellipse at 40% 60%,
-        rgba(250, 245, 235, 0.6) 0%,
-        rgba(238, 228, 212, 0.3) 45%,
-        transparent 75%);
-    animation: liquid-spin-2 7s linear infinite reverse;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.orb:hover::before,
-.orb:hover::after {
-    opacity: 1;
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes liquid-spin-1 {
@@ -279,15 +254,58 @@
         <br>
         <p>In my garden, I have learned that healthy plants need to be understood in the context of their entire ecosystem. Brands are not too different. My work is patient, holistic, and always a little messy.</p>
         <br>
-        <p>My design career started with a BS in Architecture, which gave me a foundation in spatial thinking. I went on to work as a design strategist, working with large organizations on how they could enact real social change. Right now, I'm finishing my master's at USC, taking classes in business, design, and computer science. My current academic course load is about refining my creative process to be as multidisciplinary as the problems I want to solve.</p>
-        <br>
         <p>If you're working on something you believe in, I'd love to hear from you. I'm always happy to share ideas, trade stories, or just chat about the process of building things that matter.</p>
     </div>
 
     <!-- LIBRARY OVERLAY -->
-    <div class="overlay" id="overlay-library">
+    <div class="overlay" id="overlay-library" style="max-width: 620px; max-height: 80vh; overflow-y: auto;">
         <button class="overlay-close" onclick="closeAll()">✕</button>
-        <h2>What I'm Reading</h2>
+        
+        <h2 style="font-size: 32px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px;">Current Obsessions</h2>
+    
+        <div style="display: flex; flex-direction: column; gap: 0;">
+    
+            <a href="https://www.goodreads.com/book/show/7331435-a-visit-from-the-goon-squad" target="_blank" style="text-decoration: none; color: white; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 18px 0; display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <p style="font-size: 17px; font-weight: 600;">A Visit from the Goon Squad</p>
+                    <span style="font-size: 11px; opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase;">Novel ↗</span>
+                </div>
+                <p style="font-size: 13px; opacity: 0.55;">Jennifer Egan</p>
+            </a>
+    
+            <a href="https://substack.com/home/post/p-158538641" target="_blank" style="text-decoration: none; color: white; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 18px 0; display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <p style="font-size: 17px; font-weight: 600;">Make Something Heavy</p>
+                    <span style="font-size: 11px; opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase;">Substack ↗</span>
+                </div>
+                <p style="font-size: 13px; opacity: 0.55;">Anu Atluru</p>
+            </a>
+    
+            <a href="https://anatomyof.ai/" target="_blank" style="text-decoration: none; color: white; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 18px 0; display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <p style="font-size: 17px; font-weight: 600;">Anatomy of AI</p>
+                    <span style="font-size: 11px; opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase;">Essay ↗</span>
+                </div>
+                <p style="font-size: 13px; opacity: 0.55;">Kate Crawford</p>
+            </a>
+    
+            <a href="https://open.spotify.com/track/0op3PeSfQPc1BCDhYjUf25" target="_blank" style="text-decoration: none; color: white; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 18px 0; display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <p style="font-size: 17px; font-weight: 600;">Hey Diddle</p>
+                    <span style="font-size: 11px; opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase;">Song ↗</span>
+                </div>
+                <p style="font-size: 13px; opacity: 0.55;">Paul McCartney</p>
+            </a>
+    
+            <a href="https://www.artgallery.nsw.gov.au/artboards/hilma/the-ten-largest/" target="_blank" style="text-decoration: none; color: white; padding: 18px 0; display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <p style="font-size: 17px; font-weight: 600;">The Ten Largest</p>
+                    <span style="font-size: 11px; opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase;">Painting ↗</span>
+                </div>
+                <p style="font-size: 13px; opacity: 0.55;">Hilma af Klint</p>
+            </a>
+    
+        </div>
     </div>
 
     <!-- BIKE OVERLAY -->
@@ -297,25 +315,30 @@
     </div>
 
     <!-- MAILBOX OVERLAY -->
-<div class="overlay" id="overlay-mail">
-    <button class="overlay-close" onclick="closeAll()">✕</button>
-    <h2>Together, let's build something home grown.</h2>
-    <br>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-        <a href="mailto:angelinas.5119@gmail.com" style="color: white; text-decoration: none; font-size: 16px;text-decoration: underline;">
-            Email
-        </a>
-        <a href="mailto:as42817@usc.edu" style="color: white; text-decoration: none; font-size: 16px; text-decoration: underline;">
-            School Email
-        </a>
-        <a href="https://www.linkedin.com/in/angelina-silvestri" target="_blank" style="color: white; text-decoration: none; font-size: 16px; text-decoration: underline;">
-            LinkedIn
-        </a>
-        <a href="https://www.instagram.com/angelina.silver/" target="_blank" style="color: white; text-decoration: none; font-size: 16px; text-decoration: underline;">
-            Instagram
-        </a>
+    <div class="overlay" id="overlay-mail" style="max-width: 520px;">
+        <button class="overlay-close" onclick="closeAll()">✕</button>
+        <p style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-bottom: 16px;">Say Hello</p>
+        <h2 style="font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 32px;">Together, let's build something home grown.</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="mailto:angelinas.5119@gmail.com" style="display: flex; justify-content: space-between; align-items: center; color: white; text-decoration: none; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 12px;">
+                <span style="opacity: 0.5; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">Email</span>
+                <span>angelinas.5119@gmail.com ↗</span>
+            </a>
+            <a href="mailto:as42817@usc.edu" style="display: flex; justify-content: space-between; align-items: center; color: white; text-decoration: none; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 12px;">
+                <span style="opacity: 0.5; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">USC</span>
+                <span>as42817@usc.edu ↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/angelina-silvestri" target="_blank" style="display: flex; justify-content: space-between; align-items: center; color: white; text-decoration: none; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 12px;">
+                <span style="opacity: 0.5; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">LinkedIn</span>
+                <span>Angelina Silvestri ↗</span>
+            </a>
+            <a href="https://www.instagram.com/angelina.silver/" target="_blank" style="display: flex; justify-content: space-between; align-items: center; color: white; text-decoration: none; font-size: 15px;">
+                <span style="opacity: 0.5; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">Instagram</span>
+                <span>@angelina.silver ↗</span>
+            </a>
+        </div>
     </div>
-</div>
 
     <!-- THE SCROLLABLE MARKET -->
     <div id="market">
@@ -326,12 +349,16 @@
 
             <!-- ORBS — positions are % of illustration width x height -->
             <!-- We'll dial these in together once you see them in the browser -->
-            <div class="orb" data-target="overlay-welcome"  style="left: 5.65%;  top: 40%;"></div>
-            <div class="orb" data-target="overlay-library"  style="left: 31.75%; top: 59%;"></div>
-            <div class="orb" data-target="overlay-bike"     style="left: 44.5%; top: 65%;"></div>
-            <div class="orb" data-target="overlay-mail"     style="left: 90%; top: 63%;"></div>
-            <div class="orb" data-target="external" data-url="https://angelinasilver19.github.io/climate-spirograph/" style="left: 3.4%; top: 10.5%;"></div>
-
+            <div class="orb" data-target="overlay-welcome" style="left: 5%; top: 43%;">
+    <img src="assets/flower-1.png">
+</div>
+<div style="position: absolute; left: 4.5%; top: 50.5%; transform: translateY(-50%); font-family: 'Urbanist', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; color: #1a1a1a; opacity: 0.7; pointer-events: none; z-index: 51;">✦ click me ✦</div>
+            <div class="orb" data-target="external" data-url="projects/fly-by-jing/fly-by-jing.html" style="left: 19%; top: 40%;"><img src="assets/flower-2.png"></div>
+            <div class="orb" data-target="overlay-library" style="left: 31%; top: 59%;"><img src="assets/flower-3.png"></div>
+            <div class="orb" data-target="external" data-url="https://angelinasilver19.github.io/climate-spirograph/" style="left: 68.5%; top: 70%;"><img src="assets/flower-4.png"></div>
+            <div class="orb" data-target="external" data-url="projects/water-potability/water-potability.html" style="left: 54.3%; top: 53%;"><img src="assets/flower-1.png"></div>
+            <div class="orb" data-target="overlay-mail" style="left: 89%; top: 60%;"><img src="assets/flower-6.png"></div>
+            <div class="orb" data-target="external" data-url="projects/market-portfolio/market-portfolio.html" style="left: 79.5%; top: 65%;"><img src="assets/flower-5.png"></div>
         </div>
     </div>
 
